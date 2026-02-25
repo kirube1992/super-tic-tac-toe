@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from "vue";
+import welcome from "./welcome.vue";
 
-const firstPlayer = ref("");
-const secondPlayer = ref("");
 const currentPlayer = ref("");
 const winner = ref(false);
 
@@ -89,22 +88,10 @@ function makeAMove(bigrow, bigcol, smallrow, smallcoloumn) {
     }
   }
 }
-
-function preferletter(choise) {
-  firstPlayer.value = choise;
-  secondPlayer.value = choise === "X" ? "O" : "X";
-  currentPlayer.value = choise;
-}
 </script>
 <template>
+  <welcome />
   <div class="container">
-    <h2>Welcome to tic tac toe</h2>
-    <div>
-      <p>which letter you preffer to play with</p>
-      <button class="btn" @click="preferletter('X')">X</button>
-      <button class="btn" @click="preferletter('O')">O</button>
-      <h2>current player is {{ currentPlayer }}</h2>
-    </div>
     <div class="winner" v-if="winner">
       <h2 v-if="winner === 'Draw'">it's Draw</h2>
       <h2 v-else>winner: player{{ winner }}</h2>
@@ -140,7 +127,7 @@ function preferletter(choise) {
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   flex-direction: column;
